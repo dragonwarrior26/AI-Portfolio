@@ -509,3 +509,211 @@ footer {
         opacity: 0.5;
     }
 }
+
+/* API Key Modal */
+#api-key-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+#api-key-modal.hidden {
+    display: none;
+}
+
+.modal-content {
+    padding: 20px;
+    text-align: center;
+}
+
+.modal-content input {
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    padding: 5px 10px;
+    margin: 10px 0;
+    width: 100%;
+    font-family: monospace;
+}
+
+#save-key-btn {
+    background: var(--accent-green);
+    border: none;
+    padding: 5px 15px;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    font-family: 'Fira Code', monospace;
+}
+
+/* --- V2 Sprint 2: Gemini Chat Widget --- */
+
+/* 1. Floating Trigger Icon */
+.chat-trigger {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background: var(--accent-green);
+    border-radius: 50%;
+    box-shadow: 0 0 20px rgba(46, 160, 67, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 10000;
+    transition: transform 0.2s, box-shadow 0.2s;
+    animation: float 6s ease-in-out infinite;
+}
+
+.chat-trigger i {
+    font-size: 1.8rem;
+    color: #0d1117;
+    /* Dark icon on green bg */
+}
+
+.chat-trigger:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 30px rgba(46, 160, 67, 0.6);
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+/* 2. The Chat Window (Popup) */
+.chat-widget {
+    position: fixed;
+    bottom: 100px;
+    /* Above trigger */
+    right: 30px;
+    width: 350px;
+    height: 500px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--accent-green);
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9);
+    z-index: 9999;
+    font-family: 'Fira Code', monospace;
+    overflow: hidden;
+
+    /* Animation State */
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: all;
+}
+
+.chat-widget.hidden {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+    pointer-events: none;
+}
+
+.chat-header {
+    background: var(--terminal-header);
+    padding: 15px;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chat-title {
+    font-size: 0.95rem;
+    color: var(--accent-green);
+    font-weight: 600;
+}
+
+.close-btn {
+    color: var(--text-secondary);
+    font-size: 1.5rem;
+    cursor: pointer;
+    line-height: 0.5;
+}
+
+.close-btn:hover {
+    color: var(--accent-red);
+}
+
+.chat-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: rgba(13, 17, 23, 0.98);
+}
+
+.chat-messages {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    font-size: 0.9rem;
+}
+
+.message {
+    margin-bottom: 15px;
+    word-wrap: break-word;
+}
+
+.bot-message {
+    color: var(--text-primary);
+}
+
+.user-message {
+    color: var(--accent-blue);
+    text-align: right;
+    margin-left: 20%;
+}
+
+.chat-input-area {
+    padding: 15px;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--bg-secondary);
+}
+
+.chat-input-area input {
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    font-family: 'Fira Code', monospace;
+    flex: 1;
+    outline: none;
+    font-size: 0.95rem;
+}
+
+#send-btn {
+    background: transparent;
+    border: none;
+    color: var(--accent-green);
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+#send-btn:hover {
+    transform: translateX(3px);
+    color: var(--text-primary);
+}

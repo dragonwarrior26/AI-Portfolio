@@ -250,6 +250,37 @@
         </p>
     </footer>
 
+
+    <!-- V2 Sprint 2: Gemini Chat Widget -->
+    <!-- Floating Trigger Icon -->
+    <div id="chat-trigger" class="chat-trigger">
+        <i class="fa-solid fa-robot"></i>
+    </div>
+
+    <!-- Hidden Chat Window -->
+    <div id="chat-widget" class="chat-widget hidden">
+        <div class="chat-header">
+            <span class="chat-title"><i class="fa-solid fa-terminal"></i> Insight.ai System</span>
+            <span id="close-chat" class="close-btn">×</span>
+        </div>
+        <div class="chat-body">
+            <div class="chat-messages" id="chat-messages">
+                <div class="message bot-message">
+                    <span class="prompt">Insight@System:~$</span> Online.<br>
+                    I have access to Aayush's resume. How can I assist you?
+                </div>
+            </div>
+            <div class="chat-input-area">
+                <span class="prompt">></span>
+                <input type="text" id="chat-input" placeholder="Query system..." autocomplete="off">
+                <button id="send-btn"><i class="fa-solid fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Background Animation Canvas -->
+    <canvas id="bg-animation"></canvas>
+
     <script src="script.js"></script>
 </body>
 

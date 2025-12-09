@@ -1,0 +1,25 @@
+{
+  "name": "ai-portfolio",
+  "version": "1.0.0",
+  "description": "> A futuristic, interactive portfolio website designed for the modern AI Engineer.",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dragonwarrior26/AI-Portfolio.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/dragonwarrior26/AI-Portfolio/issues"
+  },
+  "homepage": "https://github.com/dragonwarrior26/AI-Portfolio#readme",
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "dotenv": "^17.2.3"
+  }
+}

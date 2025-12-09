@@ -249,5 +249,97 @@ document.addEventListener('DOMContentLoaded', () => {
 
     generateHeatmap();
 
+
+    // --- V2 Sprint 2: Gemini Chat Widget Logic ---
+    const chatWidget = document.getElementById('chat-widget');
+    const chatTrigger = document.getElementById('chat-trigger');
+    const closeChat = document.getElementById('close-chat');
+    const chatInput = document.getElementById('chat-input');
+    const sendBtn = document.getElementById('send-btn');
+    const chatMessages = document.getElementById('chat-messages');
+
+    // Config: API Key (Provided by Admin)
+    // WARNING: Exposing this in a public repo is insecure. 
+    // Ideally, use a backend proxy. For now, we will use a placeholder.
+    const GEMINI_API_KEY = "";
+
+    // 1. Toggle Chat Window
+    function toggleChat() {
+        chatWidget.classList.toggle('hidden');
+        if (!chatWidget.classList.contains('hidden')) {
+            chatInput.focus();
+        }
+    }
+
+    if (chatTrigger) chatTrigger.addEventListener('click', toggleChat);
+    if (closeChat) closeChat.addEventListener('click', toggleChat);
+
+    // 2. Add Message to Chat
+    function addMessage(text, isUser = false) {
+        if (!chatMessages) return;
+        const msgDiv = document.createElement('div');
+        msgDiv.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
+
+        if (isUser) {
+            msgDiv.innerHTML = text; // User msg is plain text usually
+        } else {
+            msgDiv.innerHTML = `<span class="prompt">Insight@System:~$</span> ${text}`;
+        }
+
+        chatMessages.appendChild(msgDiv);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    // 3. Handle Sending (Real API via Proxy)
+    async function handleSend() {
+        if (!chatInput) return;
+        const text = chatInput.value.trim();
+        if (!text) return;
+
+        // User Message
+        addMessage(text, true);
+        chatInput.value = '';
+
+        // Bot "Thinking"
+        const thinkingDiv = document.createElement('div');
+        thinkingDiv.className = 'message bot-message';
+        thinkingDiv.id = 'thinking-indicator';
+        thinkingDiv.innerHTML = `<span class="prompt">Insight@System:~$</span> Processing... <span class="cursor"></span>`;
+        chatMessages.appendChild(thinkingDiv);
+
+        try {
+            // Call the Netlify Function (Proxy)
+            const response = await fetch('/.netlify/functions/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message: text })
+            });
+
+            const data = await response.json();
+
+            thinkingDiv.remove();
+
+            if (response.ok && data.reply) {
+                // Success Response
+                addMessage(data.reply);
+            } else {
+                // Error Response
+                console.error("API Error:", data);
+                addMessage("System Error: Unable to reach Insight core.");
+            }
+
+        } catch (err) {
+            thinkingDiv.remove();
+            console.error("Network Error:", err);
+            addMessage("Error: Network connection failed.");
+        }
+    }
+
+    if (sendBtn) sendBtn.addEventListener('click', handleSend);
+    if (chatInput) {
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') handleSend();
+        });
+    }
 });
 
