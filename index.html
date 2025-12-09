@@ -250,6 +250,68 @@
         </p>
     </footer>
 
+    <!-- V2 Sprint 3: Neural Playground -->
+    <section id="playground" class="container">
+        <h2 class="section-title">Neural_Playground_v1.0</h2>
+        <div class="playground-layout">
+            <!-- Left: Control Panel -->
+            <div class="controls-panel">
+                <div class="panel-header">
+                    <i class="fa-solid fa-sliders"></i> Hyperparameters
+                </div>
+
+                <div class="control-group">
+                    <label>Learning Rate (η): <span id="lr-val">0.01</span></label>
+                    <input type="range" id="lr-slider" min="0.001" max="0.1" step="0.001" value="0.01">
+                </div>
+
+                <div class="control-group">
+                    <label>Epochs: <span id="epoch-val">0</span></label>
+                    <!-- Visual progress bar style -->
+                    <div class="progress-track">
+                        <div class="progress-fill" id="epoch-progress"></div>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label>Batch Size: <span id="batch-val">32</span></label>
+                    <input type="range" id="batch-slider" min="16" max="128" step="16" value="32">
+                </div>
+
+                <div class="control-group">
+                    <label>Complexity / Layers</label>
+                    <div class="toggle-group">
+                        <button class="toggle-btn active" data-layers="1">Deep</button>
+                        <button class="toggle-btn" data-layers="0">Shallow</button>
+                    </div>
+                </div>
+
+                <div class="actions">
+                    <button id="train-btn" class="action-btn start"><i class="fa-solid fa-play"></i> Train</button>
+                    <button id="reset-btn" class="action-btn reset"><i class="fa-solid fa-rotate-left"></i>
+                        Reset</button>
+                </div>
+
+                <div class="metrics">
+                    <div class="metric-item">
+                        <span class="label">Loss</span>
+                        <span class="value" id="loss-val">1.450</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="label">Accuracy</span>
+                        <span class="value" id="acc-val">0.12</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Visualizer Canvas -->
+            <div class="visualizer-container">
+                <canvas id="neural-canvas"></canvas>
+                <div class="overlay-text">Live Training Feed</div>
+            </div>
+        </div>
+    </section>
+
 
     <!-- V2 Sprint 2: Gemini Chat Widget -->
     <!-- Floating Trigger Icon -->

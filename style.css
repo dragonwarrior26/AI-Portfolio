@@ -717,3 +717,215 @@ footer {
     transform: translateX(3px);
     color: var(--text-primary);
 }
+
+/* --- V2 Sprint 3: Neural Playground --- */
+
+#playground {
+    padding-top: 50px;
+    padding-bottom: 100px;
+}
+
+.playground-layout {
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    gap: 30px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    padding: 20px;
+    border-radius: 8px;
+    /* Glassmorphism subtle */
+    backdrop-filter: blur(5px);
+}
+
+@media (max-width: 900px) {
+    .playground-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Controls Panel */
+.controls-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.panel-header {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--accent-green);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.control-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.control-group label {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    display: flex;
+    justify-content: space-between;
+}
+
+.control-group label span {
+    color: var(--text-primary);
+    font-family: 'Fira Code', monospace;
+}
+
+/* Custom Range Slider */
+input[type=range] {
+    -webkit-appearance: none;
+    width: 100%;
+    background: transparent;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background: var(--accent-blue);
+    cursor: pointer;
+    margin-top: -6px;
+    box-shadow: 0 0 5px var(--accent-blue);
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 4px;
+    cursor: pointer;
+    background: var(--border-color);
+    border-radius: 2px;
+}
+
+/* Toggle Buttons */
+.toggle-group {
+    display: flex;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.toggle-btn {
+    flex: 1;
+    background: var(--bg-color);
+    border: none;
+    padding: 8px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: all 0.2s;
+}
+
+.toggle-btn.active {
+    background: var(--accent-blue);
+    color: #fff;
+}
+
+.toggle-btn:hover:not(.active) {
+    background: var(--terminal-header);
+}
+
+/* Action Buttons */
+.actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.action-btn {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    transition: transform 0.1s, opacity 0.2s;
+}
+
+.action-btn:active {
+    transform: scale(0.98);
+}
+
+.action-btn.start {
+    background: var(--accent-green);
+    color: #0d1117;
+}
+
+.action-btn.reset {
+    background: var(--border-color);
+    color: var(--text-primary);
+}
+
+.action-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Metrics Display */
+.metrics {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-top: 10px;
+    background: var(--bg-color);
+    padding: 15px;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+}
+
+.metric-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.metric-item .label {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    margin-bottom: 5px;
+}
+
+.metric-item .value {
+    font-family: 'Fira Code', monospace;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--accent-orange);
+}
+
+/* Visualizer Canvas */
+.visualizer-container {
+    position: relative;
+    background: #000;
+    border-radius: 6px;
+    overflow: hidden;
+    min-height: 350px;
+    border: 1px solid var(--border-color);
+}
+
+#neural-canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.overlay-text {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.4);
+    font-family: monospace;
+    pointer-events: none;
+}

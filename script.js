@@ -343,5 +343,223 @@ document.addEventListener('DOMContentLoaded', () => {
             if (e.key === 'Enter') handleSend();
         });
     }
+
+    // --- V2 Sprint 3: Neural Playground Logic ---
+
+    // Note: This is an artistic simulation, not a real TensorFlow trainer
+    // It visualizes the *concept* of training dynamics.
+
+    class NeuralVisualizer {
+        constructor() {
+            this.canvas = document.getElementById('neural-canvas');
+            if (!this.canvas) return;
+
+            this.ctx = this.canvas.getContext('2d');
+            this.resize();
+
+            // UI Controls
+            this.lrSlider = document.getElementById('lr-slider');
+            this.batchSlider = document.getElementById('batch-slider');
+            this.trainBtn = document.getElementById('train-btn');
+            this.resetBtn = document.getElementById('reset-btn');
+
+            // Displays
+            this.lrVal = document.getElementById('lr-val');
+            this.epochVal = document.getElementById('epoch-val');
+            this.batchVal = document.getElementById('batch-val');
+            this.lossVal = document.getElementById('loss-val');
+            this.accVal = document.getElementById('acc-val');
+            this.epochProgress = document.getElementById('epoch-progress');
+
+            // State
+            this.isTraining = false;
+            this.epoch = 0;
+            this.maxEpochs = 100;
+            this.nodes = [];
+            this.weights = [];
+            this.layers = [3, 5, 4, 2]; // Start simple
+            this.loss = 1.8;
+            this.accuracy = 0.1;
+
+            this.initListeners();
+            this.initNetwork();
+            this.animate();
+        }
+
+        resize() {
+            if (!this.canvas.parentElement) return;
+            this.width = this.canvas.parentElement.offsetWidth;
+            this.height = this.canvas.parentElement.offsetHeight;
+            this.canvas.width = this.width;
+            this.canvas.height = this.height;
+            this.initNetwork(); // Re-center
+        }
+
+        initListeners() {
+            window.addEventListener('resize', () => this.resize());
+
+            this.lrSlider.addEventListener('input', (e) => {
+                this.lrVal.innerText = e.target.value;
+            });
+
+            this.batchSlider.addEventListener('input', (e) => {
+                this.batchVal.innerText = e.target.value;
+            });
+
+            this.trainBtn.addEventListener('click', () => {
+                this.isTraining = !this.isTraining;
+                this.trainBtn.innerHTML = this.isTraining ?
+                    '<i class="fa-solid fa-pause"></i> Pause' :
+                    '<i class="fa-solid fa-play"></i> Train';
+                this.trainBtn.classList.toggle('start');
+            });
+
+            this.resetBtn.addEventListener('click', () => {
+                this.isTraining = false;
+                this.trainBtn.innerHTML = '<i class="fa-solid fa-play"></i> Train';
+                this.trainBtn.classList.add('start');
+                this.epoch = 0;
+                this.loss = 1.8;
+                this.accuracy = 0.1;
+                this.updateUI();
+                this.initNetwork();
+            });
+
+            // Layer Toggles
+            document.querySelectorAll('.toggle-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+                    e.target.classList.add('active');
+                    const depth = parseInt(e.target.dataset.layers);
+                    this.layers = depth === 1 ? [3, 6, 6, 4, 2] : [3, 5, 2];
+                    this.initNetwork();
+                });
+            });
+        }
+
+        initNetwork() {
+            this.nodes = [];
+            this.weights = [];
+
+            const layerSpacing = this.width / (this.layers.length + 1);
+
+            this.layers.forEach((nodeCount, layerIndex) => {
+                const layerX = layerSpacing * (layerIndex + 1);
+                const nodeSpacing = this.height / (nodeCount + 1);
+
+                for (let i = 0; i < nodeCount; i++) {
+                    this.nodes.push({
+                        x: layerX,
+                        y: nodeSpacing * (i + 1),
+                        layer: layerIndex,
+                        value: Math.random(),
+                        activation: 0
+                    });
+                }
+            });
+
+            // Create connections (Weights)
+            for (let i = 0; i < this.nodes.length; i++) {
+                const source = this.nodes[i];
+                for (let j = 0; j < this.nodes.length; j++) {
+                    const target = this.nodes[j];
+                    if (target.layer === source.layer + 1) {
+                        this.weights.push({
+                            source: source,
+                            target: target,
+                            value: Math.random() * 2 - 1, // -1 to 1
+                            strength: 0
+                        });
+                    }
+                }
+            }
+        }
+
+        updateUI() {
+            this.epochVal.innerText = this.epoch;
+            this.lossVal.innerText = this.loss.toFixed(3);
+            this.accVal.innerText = (this.accuracy * 100).toFixed(1) + '%';
+            this.epochProgress.style.width = (this.epoch / this.maxEpochs * 100) + '%';
+        }
+
+        step() {
+            if (!this.isTraining || this.epoch >= this.maxEpochs) return;
+
+            const lr = parseFloat(this.lrSlider.value);
+
+            // Simulate progression
+            this.epoch++;
+            this.loss = Math.max(0.05, this.loss * (0.99 - (lr * 0.1)));
+            this.accuracy = Math.min(0.98, this.accuracy + (lr * 0.05));
+
+            // Add some jitter to weights based on LR
+            this.weights.forEach(w => {
+                w.strength += (Math.random() - 0.5) * lr * 5;
+                w.strength = Math.max(0, Math.min(1, Math.abs(w.value) + w.strength)); // Clamp
+            });
+
+            // "Fire" neurons
+            this.nodes.forEach(n => {
+                n.activation = Math.random() > 0.5 ? 1 : 0; // Visual flicker
+            });
+
+            this.updateUI();
+
+            if (this.epoch === this.maxEpochs) {
+                this.isTraining = false;
+                this.trainBtn.innerHTML = '<i class="fa-solid fa-check"></i> Done';
+            }
+        }
+
+        draw() {
+            this.ctx.clearRect(0, 0, this.width, this.height);
+
+            // Draw Weights
+            this.weights.forEach(w => {
+                // Dynamic opacity based on training
+                const opacity = 0.1 + (this.isTraining ? Math.random() * 0.3 : 0.1) + w.strength * 0.5;
+
+                this.ctx.beginPath();
+                this.ctx.moveTo(w.source.x, w.source.y);
+                this.ctx.lineTo(w.target.x, w.target.y);
+                this.ctx.strokeStyle = `rgba(56, 139, 253, ${opacity})`; // Blue
+                this.ctx.lineWidth = 1 + w.strength;
+                this.ctx.stroke();
+            });
+
+            // Draw Nodes
+            this.nodes.forEach(n => {
+                this.ctx.beginPath();
+                this.ctx.arc(n.x, n.y, 6, 0, Math.PI * 2);
+                this.ctx.fillStyle = '#0d1117';
+                this.ctx.fill();
+
+                // firing effect
+                const fire = this.isTraining && Math.random() > 0.8;
+                this.ctx.strokeStyle = fire ? '#2ea043' : '#8b949e'; // Green if firing
+                this.ctx.lineWidth = 2;
+                this.ctx.stroke();
+
+                if (fire) {
+                    this.ctx.beginPath();
+                    this.ctx.arc(n.x, n.y, 10, 0, Math.PI * 2);
+                    this.ctx.strokeStyle = 'rgba(46, 160, 67, 0.4)';
+                    this.ctx.stroke();
+                }
+            });
+        }
+
+        animate() {
+            if (this.isTraining) {
+                // Throttle simulation speed
+                if (Math.random() > 0.8) this.step();
+            }
+            this.draw();
+            requestAnimationFrame(() => this.animate());
+        }
+    }
+
+    // Init Playground
+    new NeuralVisualizer();
 });
 
