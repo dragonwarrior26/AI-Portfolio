@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aayush Sharma | AI & Product Manager</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <canvas id="bg-animation"></canvas>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <a href="#" class="logo mono">~/aayush_sharma</a>
+            <ul class="nav-links">
+                <li><a href="#hero">h0me</a></li>
+                <li><a href="#about">ab0ut</a></li>
+                <li><a href="#experience">exp_log</a></li>
+                <li><a href="#projects">rep0s</a></li>
+                <li><a href="#skills">tech_stack</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section (Terminal) -->
+    <section id="hero">
+        <div class="terminal-window">
+            <div class="terminal-header">
+                <div class="dot red"></div>
+                <div class="dot yellow"></div>
+                <div class="dot green"></div>
+                <span style="margin-left: 10px; font-size: 0.8rem; color: #8b949e;">bash — 80x24</span>
+            </div>
+            <div class="terminal-body" id="terminal-content">
+                <!-- Javascript will populate this -->
+            </div>
+        </div>
+    </section>
+
+    <!-- About Summary -->
+    <section id="about" class="container">
+        <h2 class="section-title">README.md</h2>
+        <p style="max-width: 800px; color: var(--text-secondary); font-size: 1.1rem;">
+            Results-driven <span class="text-green">Implementation and Project Manager</span> with 5+ years of
+            experience in SaaS, CRM, and customer success.
+            Currently pursuing an M.S. in Data Science & AI from <span class="text-purple">Northwestern
+                University</span>.
+            <br><br>
+            I bridge the gap between complex AI technologies and business value, specializing in API integrations,
+            data-driven strategy, and cross-functional leadership.
+        </p>
+
+        <!-- V2: GitHub Contributions -->
+        <div class="heatmap-container">
+            <div class="heatmap-title">
+                <span>System Activity (GitHub Contributions)</span>
+                <span>Active</span>
+            </div>
+            <div class="heatmap-grid" id="github-heatmap">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section (Timeline) -->
+    <section id="experience" class="container">
+        <h2 class="section-title">System Log / Experience</h2>
+        <div class="timeline">
+
+            <!-- Zykrr Present -->
+            <div class="timeline-item">
+                <div class="timeline-date">APR 2023 - PRESENT</div>
+                <h3 class="timeline-role">Project Manager</h3>
+                <div class="timeline-company">Zykrr Technologies Pvt. Ltd.</div>
+                <div class="timeline-content">
+                    <ul>
+                        <li>Orchestrated end-to-end SaaS deployments for 8 enterprise clients in LATAM/Asia.</li>
+                        <li>Achieved 15% faster delivery and 25% higher adoption.</li>
+                        <li>Managed Agentic-AI implementation for conversational chatbots.</li>
+                        <li>Led Salesforce & API integrations.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Zykrr Lead -->
+            <div class="timeline-item">
+                <div class="timeline-date">OCT 2022 - APR 2023</div>
+                <h3 class="timeline-role">Project Lead</h3>
+                <div class="timeline-company">Zykrr Technologies Pvt. Ltd.</div>
+                <div class="timeline-content">
+                    <ul>
+                        <li>Led multiple concurrent projects ensuring SLA compliance.</li>
+                        <li>Optimized collaboration between Engineering, QA, and Product teams.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Zykrr Analyst -->
+            <div class="timeline-item">
+                <div class="timeline-date">JUL 2021 - SEP 2022</div>
+                <h3 class="timeline-role">Project Analyst</h3>
+                <div class="timeline-company">Zykrr Technologies Pvt. Ltd.</div>
+                <div class="timeline-content">
+                    <ul>
+                        <li>Optimized workflows improving efficiency by 18%.</li>
+                        <li>Supported client onboarding and requirement analysis.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Internship iNeuron -->
+            <div class="timeline-item">
+                <div class="timeline-date">MAY 2021 - JUL 2021</div>
+                <h3 class="timeline-role">Data Science Intern</h3>
+                <div class="timeline-company">iNeuron Intelligence</div>
+                <div class="timeline-content">
+                    <ul>
+                        <li>Developed Facial Recognition System using dLib & MTCNN.</li>
+                        <li>Collaborated with 12-member team for end-to-end AI deployment.</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="container">
+        <h2 class="section-title">Kernel / Education</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-header">
+                    <span class="project-title">M.S. Data Science & AI</span>
+                    <span class="text-purple">2026</span>
+                </div>
+                <div class="project-desc">
+                    Northwestern University, Chicago<br>
+                    CGPA: 3.75
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-header">
+                    <span class="project-title">B.Tech Electronics & Comm.</span>
+                    <span class="text-blue">2021</span>
+                </div>
+                <div class="project-desc">
+                    Deenbandhu Chhotu Ram University<br>
+                    CGPA: 7.10
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects / Repos Section -->
+    <section id="projects" class="container">
+        <h2 class="section-title">public_repos</h2>
+        <div class="projects-grid">
+
+            <!-- Project 1 -->
+            <div class="project-card">
+                <div class="project-header">
+                    <span class="project-title">Facial Recognition System</span>
+                    <i class="fa-regular fa-star text-secondary"></i>
+                </div>
+                <p class="project-desc">
+                    Attendance system using dLib and MTCNN deployed via web interface.
+                </p>
+                <div class="tech-stack">
+                    <div class="tech-tag"><span class="lang-color" style="background: #3572A5;"></span> Python</div>
+                    <div class="tech-tag"><span class="lang-color" style="background: #e34c26;"></span> dLib</div>
+                </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="project-card">
+                <div class="project-header">
+                    <span class="project-title">HR Attrition Predictor</span>
+                    <i class="fa-regular fa-star text-secondary"></i>
+                </div>
+                <p class="project-desc">
+                    Predictive models to analyze HR attrition data and visualization dashboards.
+                </p>
+                <div class="tech-stack">
+                    <div class="tech-tag"><span class="lang-color" style="background: #3572A5;"></span> Python</div>
+                    <div class="tech-tag"><span class="lang-color" style="background: #f1e05a;"></span> Scikit-Learn
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="project-card">
+                <div class="project-header">
+                    <span class="project-title">Agentic AI Chatbot</span>
+                    <i class="fa-regular fa-star text-secondary"></i>
+                </div>
+                <p class="project-desc">
+                    Enterprise conversational chatbot ensuring automation and enhanced CX.
+                </p>
+                <div class="tech-stack">
+                    <div class="tech-tag"><span class="lang-color" style="background: #3572A5;"></span> Python</div>
+                    <div class="tech-tag"><span class="lang-color" style="background: #563d7c;"></span> GenAI</div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="container">
+        <h2 class="section-title">dependencies.json</h2>
+        <div class="skills-container">
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">TensorFlow</span>
+            <span class="skill-tag">PyTorch</span>
+            <span class="skill-tag">Salesforce</span>
+            <span class="skill-tag">Docker</span>
+            <span class="skill-tag">CI/CD</span>
+            <span class="skill-tag">Jira</span>
+            <span class="skill-tag">Tableau</span>
+            <span class="skill-tag">REST APIs</span>
+            <span class="skill-tag">Project Management</span>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="social-links">
+            <a href="mailto:aayushsharma0426@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+            <a href="https://linkedin.com/in/aayush-sharma-ba67ba173" target="_blank"><i
+                    class="fa-brands fa-linkedin"></i></a>
+            <a href="#" target="_blank"><i class="fa-brands fa-github"></i></a>
+        </div>
+        <div class="system-status">
+            <div class="status-item">
+                <div class="status-dot"></div>
+                <span id="time-display">IST: 12:00</span>
+            </div>
+            <div class="status-item">
+                <i class="fa-solid fa-signal text-green"></i>
+                <span>All Systems Operational</span>
+            </div>
+        </div>
+        <p class="mono" style="font-size: 0.8rem; margin-top: 15px;">
+            Code & Design by Aayush Sharma. &copy; 2025
+        </p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
