@@ -325,13 +325,15 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 // Error Response
                 console.error("API Error:", data);
-                addMessage("System Error: Unable to reach Insight core.");
+                // DEBUG: Show actual error in UI
+                const debugMsg = data.error || data.body || "Unknown Backend Error";
+                addMessage(`System Error: ${debugMsg} (Status: ${response.status})`);
             }
 
         } catch (err) {
             thinkingDiv.remove();
             console.error("Network Error:", err);
-            addMessage("Error: Network connection failed.");
+            addMessage(`Error: ${err.message}`);
         }
     }
 
