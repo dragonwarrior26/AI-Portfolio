@@ -18,8 +18,22 @@ exports.handler = async function (event, context) {
         // Initialize Gemini API
         // Netlify will access this env var automatically
         const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-        // Using specific version alias for stability
-        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash-001" });
+
+        // DEBUG MODE: List Models
+        if (userMessage === "DEBUG") {
+            const modelList = await genAI.getGenerativeModel({ model: "gemini-1.5-flash" }).eventId;
+            // Actually, we need the model manager
+            // SDK doesn't expose listModels nicely on the main instance in some versions?
+            // Let's try to just return the API Key (first 4 chars) to verify it's read.
+            const keyStatus = process.env.GEMINI_API_KEY ? "Loaded (" + process.env.GEMINI_API_KEY.substring(0, 4) + "...)" : "Missing";
+            return {
+                statusCode: 200,
+                body: JSON.stringify({ reply: `DEBUG INFO:\nKey: ${keyStatus}\nModel: gemini-1.5-flash\nNote: Please check Google AI Studio if 'Generative Language API' is enabled.` })
+            };
+        }
+
+        // Using standard 'gemini-1.5-flash'
+        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
         // Context Injection (The System Prompt)
         // We instruct the AI to act as Aayush's portfolio assistant.
