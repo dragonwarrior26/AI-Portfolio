@@ -18,7 +18,8 @@ exports.handler = async function (event, context) {
         // Initialize Gemini API
         // Netlify will access this env var automatically
         const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-        const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+        // Using 'gemini-1.5-flash' which is the current stable/fast model
+        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
         // Context Injection (The System Prompt)
         // We instruct the AI to act as Aayush's portfolio assistant.
