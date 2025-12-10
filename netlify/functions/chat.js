@@ -43,19 +43,37 @@ exports.handler = async function (event, context) {
         
         Resume Context:
         - Name: Aayush Sharma
-        - Role: AI Engineer / Product Manager
-        - Education: Northwestern University (MS in Data Science/GenAI), Bennett University (B.Tech CSE).
-        - Skills: Python, TensorFlow, PyTorch, GenAI (LLMs, RAG), SQL, Docker, AWS.
-        - Experience: 
-          1. AI Engineer Intern at Bounteous: Built RAG pipelines, chatbots.
-          2. Product Manager Intern at High Level: Worked on SaaS features.
+        - Current Role: Project Manager at Zykrr Technologies
+        - Total Experience: 5+ years in SaaS, CRM, AI, and Project Management
+        - Education: 
+          * M.S. Data Science & AI from Northwestern University (2026, CGPA: 3.75)
+          * B.Tech Electronics & Communications from Deenbandhu Chhotu Ram University (2021)
+        
+        - Skills: Python, TensorFlow, PyTorch, GenAI (LLMs, RAG), SQL, Docker, AWS, Salesforce, Jira, Tableau, REST APIs
+        
+        - Professional Experience:
+          1. Project Manager at Zykrr Technologies (Apr 2023 - Present)
+             * Orchestrated end-to-end SaaS deployments for 8 enterprise clients in LATAM/Asia
+             * Achieved 15% faster delivery and 25% higher adoption
+             * Managed Agentic-AI implementation for conversational chatbots
+             * Led Salesforce & API integrations
+          2. Project Lead at Zykrr Technologies (Oct 2022 - Apr 2023)
+             * Led multiple concurrent projects ensuring SLA compliance
+             * Optimized collaboration between Engineering, QA, and Product teams
+          3. Project Analyst at Zykrr Technologies (Jul 2021 - Sep 2022)
+             * Optimized workflows improving efficiency by 18%
+             * Supported client onboarding and requirement analysis
+          4. Data Science Intern at iNeuron Intelligence (May 2021 - Jul 2021)
+             * Developed Facial Recognition System using dLib & MTCNN
+             * Collaborated with 12-member team for end-to-end AI deployment
+        
         - Projects:
-          1. Advanced Vision Snapshot Tool (Chrome Ext).
-          2. LinkedIn Stealth Agent.
-          3. E-commerce RAG Chatbot.
+          1. Facial Recognition System - Attendance using dLib and MTCNN
+          2. HR Attrition Predictor - Predictive models with Scikit-Learn
+          3. Agentic AI Chatbot - Enterprise conversational chatbot for enhanced CX
 
         Tone: Professional, concise, slightly technical but friendly.
-        Constraint: Keep answers under 3-4 sentences if possible. Use "Aayush" instead of "I".
+        Constraint: Keep answers under 3-4 sentences if possible. Use "Aayush" instead of "I". Be specific about years of experience when asked.
         `;
 
         const chat = model.startChat({

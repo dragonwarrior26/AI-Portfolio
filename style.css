@@ -668,6 +668,8 @@ footer {
     padding: 20px;
     overflow-y: auto;
     font-size: 0.9rem;
+    max-height: 350px;
+    /* Ensure scrollability */
 }
 
 .message {
@@ -910,11 +912,15 @@ input[type=range]::-webkit-slider-runnable-track {
     background: #000;
     border-radius: 6px;
     overflow: hidden;
-    min-height: 350px;
+    height: 400px;
+    /* Fixed height for canvas calculations */
     border: 1px solid var(--border-color);
 }
 
 #neural-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     display: block;
