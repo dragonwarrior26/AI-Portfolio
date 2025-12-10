@@ -82,9 +82,18 @@ exports.handler = async function (event, context) {
 
     } catch (error) {
         console.error("Gemini API Error:", error);
+
+        // Improve User Feedback for common config errors
+        let errorMsg = error.message;
+        if (error.message.includes("404 Not Found") || error.message.includes("models/")) {
+            errorMsg = "Configuration Error: Model not found. Please ensure 'Generative Language API' is enabled in your Google Cloud Project.";
+        } else if (error.message.includes("API key")) {
+            errorMsg = "Authentication Error: Invalid API Key.";
+        }
+
         return {
             statusCode: 500,
-            body: JSON.stringify({ error: error.message }),
+            body: JSON.stringify({ error: errorMsg }),
         };
     }
 };
