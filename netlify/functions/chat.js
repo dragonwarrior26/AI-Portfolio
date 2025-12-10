@@ -32,8 +32,8 @@ exports.handler = async function (event, context) {
             };
         }
 
-        // Using standard 'gemini-1.5-flash'
-        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+        // Using 'gemini-2.0-flash' - confirmed available in user's project
+        const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
 
         // Context Injection (The System Prompt)
         // We instruct the AI to act as Aayush's portfolio assistant.
